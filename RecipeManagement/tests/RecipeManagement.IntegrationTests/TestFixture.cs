@@ -27,7 +27,6 @@ public class TestFixture : IAsyncLifetime
 {
     public static IServiceScopeFactory BaseScopeFactory;
     private PostgreSqlContainer _dbContainer;
-    private RabbitMqContainer _rmqContainer;
 
     public async Task InitializeAsync()
     {
@@ -40,18 +39,7 @@ public class TestFixture : IAsyncLifetime
         await _dbContainer.StartAsync();
         builder.Configuration.GetSection(ConnectionStringOptions.SectionName)[ConnectionStringOptions.RecipeManagementKey] = _dbContainer.GetConnectionString();
         await RunMigration(_dbContainer.GetConnectionString());
-
-        var freePort = DockerUtilities.GetFreePort();
-        _rmqContainer = new RabbitMqBuilder()
-            .WithPortBinding(freePort, 5672)
-            .Build();
-        await _rmqContainer.StartAsync();
-        builder.Configuration.GetSection(RabbitMqOptions.SectionName)[RabbitMqOptions.HostKey] = "localhost";
-        builder.Configuration.GetSection(RabbitMqOptions.SectionName)[RabbitMqOptions.VirtualHostKey] = "/";
-        builder.Configuration.GetSection(RabbitMqOptions.SectionName)[RabbitMqOptions.UsernameKey] = "guest";
-        builder.Configuration.GetSection(RabbitMqOptions.SectionName)[RabbitMqOptions.PasswordKey] = "guest";
-        builder.Configuration.GetSection(RabbitMqOptions.SectionName)[RabbitMqOptions.PortKey] = _rmqContainer.GetConnectionString();
-
+        
         builder.ConfigureServices();
         var services = builder.Services;
 
@@ -75,7 +63,6 @@ public class TestFixture : IAsyncLifetime
     public async Task DisposeAsync()
     {        
         await _dbContainer.DisposeAsync();
-        await _rmqContainer.DisposeAsync();
     }
 }
 
