@@ -1,7 +1,5 @@
 namespace RecipeManagement.IntegrationTests;
 
-using RecipeManagement.Extensions.Services;
-using RecipeManagement.Databases;
 using RecipeManagement.Resources;
 using RecipeManagement.SharedTestHelpers.Utilities;
 using Resources;

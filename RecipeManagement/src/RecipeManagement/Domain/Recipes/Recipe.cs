@@ -2,7 +2,6 @@ namespace RecipeManagement.Domain.Recipes;
 
 using System.ComponentModel.DataAnnotations;
 using Destructurama.Attributed;
-using RecipeManagement.Exceptions;
 using RecipeManagement.Domain.Recipes.Models;
 
 

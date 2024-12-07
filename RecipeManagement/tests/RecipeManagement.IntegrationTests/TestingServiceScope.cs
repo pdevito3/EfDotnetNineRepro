@@ -1,7 +1,6 @@
 namespace RecipeManagement.IntegrationTests;
 
 using System.Threading.Tasks;
-using Databases;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

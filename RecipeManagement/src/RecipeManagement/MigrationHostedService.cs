@@ -1,4 +1,4 @@
-namespace RecipeManagement.Databases;
+namespace RecipeManagement;
 
 using System.Net.Sockets;
 using System.Threading;
@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Serilog;
 using Npgsql;
+using Serilog;
 
 public class MigrationHostedService<TDbContext>(
     IServiceScopeFactory scopeFactory)

@@ -1,8 +1,6 @@
 using Destructurama;
+using RecipeManagement;
 using Serilog;
-using Hangfire;
-using RecipeManagement.Extensions.Application;
-using RecipeManagement.Extensions.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
@@ -37,7 +35,9 @@ app.UseRouting();
 
 app.MapControllers();
 
-app.UseSwaggerExtension(builder.Configuration, builder.Environment);
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 try
 {
@@ -56,4 +56,7 @@ finally
 }
 
 // Make the implicit Program class public so the functional test project can access it
-public partial class Program { }
+namespace RecipeManagement
+{
+    public partial class Program { }
+}

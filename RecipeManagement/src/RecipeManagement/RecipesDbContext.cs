@@ -1,16 +1,10 @@
-namespace RecipeManagement.Databases;
+namespace RecipeManagement;
 
-using RecipeManagement.Domain;
-using RecipeManagement.Exceptions;
-using Resources;
-using MediatR;
-using RecipeManagement.Domain.Recipes;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore;
+using RecipeManagement.Domain;
+using RecipeManagement.Domain.Recipes;
 
 public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
     : DbContext(options)
@@ -79,6 +73,6 @@ public static class Extensions
     public static TEntity MustBeFoundOrThrow<TEntity>(this TEntity entity)
         where TEntity : BaseEntity
     {
-         return entity ?? throw new NotFoundException($"{typeof(TEntity).Name} was not found.");
+        return entity ?? throw new KeyNotFoundException();
     }
 }

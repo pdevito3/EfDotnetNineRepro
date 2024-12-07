@@ -1,7 +1,5 @@
 namespace RecipeManagement.Domain.Recipes.Features;
 
-using RecipeManagement.Databases;
-using RecipeManagement.Exceptions;
 using MediatR;
 
 public static class DeleteRecipe
