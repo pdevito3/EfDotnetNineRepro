@@ -39,31 +39,13 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
     public override int SaveChanges()
     {
         var result = base.SaveChanges();
-        _dispatchDomainEvents().GetAwaiter().GetResult();
         return result;
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         var result = await base.SaveChangesAsync(cancellationToken);
-        await _dispatchDomainEvents();
         return result;
-    }
-    
-    private async Task _dispatchDomainEvents()
-    {
-        var domainEventEntities = ChangeTracker.Entries<BaseEntity>()
-            .Select(po => po.Entity)
-            .Where(po => po.DomainEvents.Any())
-            .ToArray();
-
-        foreach (var entity in domainEventEntities)
-        {
-            var events = entity.DomainEvents.ToArray();
-            entity.DomainEvents.Clear();
-            foreach (var entityDomainEvent in events)
-                await mediator.Publish(entityDomainEvent);
-        }
     }
 }
 

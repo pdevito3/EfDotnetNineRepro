@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using Destructurama.Attributed;
 using RecipeManagement.Exceptions;
 using RecipeManagement.Domain.Recipes.Models;
-using RecipeManagement.Domain.Recipes.DomainEvents;
 using RecipeManagement.Domain.RecipeVisibilities;
 
 
@@ -35,8 +34,6 @@ public class Recipe : BaseEntity
         newRecipe.DateOfOrigin = recipeForCreation.DateOfOrigin;
         newRecipe.HaveMadeItMyself = recipeForCreation.HaveMadeItMyself;
         newRecipe.SetTags(recipeForCreation.Tags);
-
-        newRecipe.QueueDomainEvent(new RecipeCreated(){ Recipe = newRecipe });
         
         return newRecipe;
     }
@@ -50,7 +47,6 @@ public class Recipe : BaseEntity
         HaveMadeItMyself = recipeForUpdate.HaveMadeItMyself;
         SetTags(recipeForUpdate.Tags);
 
-        QueueDomainEvent(new RecipeUpdated(){ Id = Id });
         return this;
     }
     
