@@ -12,7 +12,7 @@ using RecipeManagement.Databases;
 namespace RecipeManagement.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20241207222124_Initial")]
+    [Migration("20241207222319_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -31,18 +31,6 @@ namespace RecipeManagement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    b.Property<DateOnly?>("DateOfOrigin")
-                        .HasColumnType("date")
-                        .HasColumnName("date_of_origin");
-
-                    b.Property<string>("Directions")
-                        .HasColumnType("text")
-                        .HasColumnName("directions");
-
-                    b.Property<bool>("HaveMadeItMyself")
-                        .HasColumnType("boolean")
-                        .HasColumnName("have_made_it_myself");
 
                     b.Property<string>("Title")
                         .HasColumnType("text")

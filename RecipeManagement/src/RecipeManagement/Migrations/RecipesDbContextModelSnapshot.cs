@@ -29,18 +29,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<DateOnly?>("DateOfOrigin")
-                        .HasColumnType("date")
-                        .HasColumnName("date_of_origin");
-
-                    b.Property<string>("Directions")
-                        .HasColumnType("text")
-                        .HasColumnName("directions");
-
-                    b.Property<bool>("HaveMadeItMyself")
-                        .HasColumnType("boolean")
-                        .HasColumnName("have_made_it_myself");
-
                     b.Property<string>("Title")
                         .HasColumnType("text")
                         .HasColumnName("title");

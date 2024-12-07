@@ -24,15 +24,9 @@ public class AddRecipeCommandTests : TestBase
 
         // Assert
         recipeReturned.Title.Should().Be(recipeOne.Title);
-        recipeReturned.Directions.Should().Be(recipeOne.Directions);
-        recipeReturned.DateOfOrigin.Should().Be(recipeOne.DateOfOrigin);
-        recipeReturned.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
 
 
         recipeCreated.Title.Should().Be(recipeOne.Title);
-        recipeCreated.Directions.Should().Be(recipeOne.Directions);
-        recipeCreated.DateOfOrigin.Should().Be(recipeOne.DateOfOrigin);
-        recipeCreated.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
 
     }
 }

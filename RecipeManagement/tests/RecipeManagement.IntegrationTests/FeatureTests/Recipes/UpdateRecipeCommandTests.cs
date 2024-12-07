@@ -28,9 +28,6 @@ public class UpdateRecipeCommandTests : TestBase
 
         // Assert
         updatedRecipe.Title.Should().Be(updatedRecipeDto.Title);
-        updatedRecipe.Directions.Should().Be(updatedRecipeDto.Directions);
-        updatedRecipe.DateOfOrigin.Should().Be(updatedRecipeDto.DateOfOrigin);
-        updatedRecipe.HaveMadeItMyself.Should().Be(updatedRecipeDto.HaveMadeItMyself);
 
     }
 }

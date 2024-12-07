@@ -23,9 +23,6 @@ public class RecipeQueryTests : TestBase
 
         // Assert
         recipe.Title.Should().Be(recipeOne.Title);
-        recipe.Directions.Should().Be(recipeOne.Directions);
-        recipe.DateOfOrigin.Should().Be(recipeOne.DateOfOrigin);
-        recipe.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
 
     }
 }

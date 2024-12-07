@@ -10,12 +10,6 @@ public class Recipe : BaseEntity
 {
     public string Title { get; private set; }
 
-    public string Directions { get; private set; }
-
-    public DateOnly? DateOfOrigin { get; private set; }
-
-    public bool HaveMadeItMyself { get; private set; }
-
     // Add Props Marker -- Deleting this comment will cause the add props utility to be incomplete
 
 
@@ -24,9 +18,6 @@ public class Recipe : BaseEntity
         var newRecipe = new Recipe();
 
         newRecipe.Title = recipeForCreation.Title;
-        newRecipe.Directions = recipeForCreation.Directions;
-        newRecipe.DateOfOrigin = recipeForCreation.DateOfOrigin;
-        newRecipe.HaveMadeItMyself = recipeForCreation.HaveMadeItMyself;
 
         
         return newRecipe;
@@ -35,10 +26,6 @@ public class Recipe : BaseEntity
     public Recipe Update(RecipeForUpdate recipeForUpdate)
     {
         Title = recipeForUpdate.Title;
-        Directions = recipeForUpdate.Directions;
-        DateOfOrigin = recipeForUpdate.DateOfOrigin;
-        HaveMadeItMyself = recipeForUpdate.HaveMadeItMyself;
-
 
         return this;
     }
