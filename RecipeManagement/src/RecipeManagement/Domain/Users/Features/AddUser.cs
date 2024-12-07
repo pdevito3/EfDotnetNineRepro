@@ -15,14 +15,11 @@ public static class AddUser
 {
     public sealed record Command(UserForCreationDto UserToAdd, bool SkipPermissions = false) : IRequest<UserDto>;
 
-    public sealed class Handler(RecipesDbContext dbContext, IHeimGuardClient heimGuard)
+    public sealed class Handler(RecipesDbContext dbContext)
         : IRequestHandler<Command, UserDto>
     {
         public async Task<UserDto> Handle(Command request, CancellationToken cancellationToken)
         {
-            if(!request.SkipPermissions)
-                await heimGuard.MustHavePermission<ForbiddenAccessException>(Permissions.CanAddUsers);
-
             var userToAdd = request.UserToAdd.ToUserForCreation();
             var user = User.Create(userToAdd);
             await dbContext.Users.AddAsync(user, cancellationToken);

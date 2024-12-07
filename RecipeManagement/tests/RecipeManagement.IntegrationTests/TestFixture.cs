@@ -58,7 +58,6 @@ public class TestFixture : IAsyncLifetime
         // add any mock services here
         services.ReplaceServiceWithSingletonMock<IHttpContextAccessor>();
         services.ReplaceServiceWithSingletonMock<IBackgroundJobClient>();
-        services.ReplaceServiceWithSingletonMock<IHeimGuardClient>();
 
         var provider = services.BuildServiceProvider();
         BaseScopeFactory = provider.GetService<IServiceScopeFactory>();
@@ -69,7 +68,7 @@ public class TestFixture : IAsyncLifetime
         var options = new DbContextOptionsBuilder<RecipesDbContext>()
             .UseNpgsql(connectionString)
             .Options;
-        var context = new RecipesDbContext(options, null, null, null);
+        var context = new RecipesDbContext(options, null);
         await context?.Database?.MigrateAsync();
     }
 

@@ -11,13 +11,11 @@ public static class DeleteUser
 {
     public sealed record Command(Guid UserId) : IRequest;
 
-    public sealed class Handler(RecipesDbContext dbContext, IHeimGuardClient heimGuard)
+    public sealed class Handler(RecipesDbContext dbContext)
         : IRequestHandler<Command>
     {
         public async Task Handle(Command request, CancellationToken cancellationToken)
         {
-            await heimGuard.MustHavePermission<ForbiddenAccessException>(Permissions.CanDeleteUsers);
-
             var recordToDelete = await dbContext.Users
                 .GetById(request.UserId, cancellationToken: cancellationToken);
             dbContext.Remove(recordToDelete);

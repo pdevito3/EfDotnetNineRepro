@@ -2,14 +2,11 @@ namespace RecipeManagement.Domain.Recipes;
 
 using System.ComponentModel.DataAnnotations;
 using RecipeManagement.Domain.Ingredients;
-using RecipeManagement.Domain.Authors;
 using System.ComponentModel.DataAnnotations.Schema;
 using Destructurama.Attributed;
 using RecipeManagement.Exceptions;
 using RecipeManagement.Domain.Recipes.Models;
 using RecipeManagement.Domain.Recipes.DomainEvents;
-using RecipeManagement.Domain.Authors;
-using RecipeManagement.Domain.Authors.Models;
 using RecipeManagement.Domain.Ingredients;
 using RecipeManagement.Domain.Ingredients.Models;
 using RecipeManagement.Domain.RecipeVisibilities;
@@ -31,8 +28,6 @@ public class Recipe : BaseEntity
     public bool HaveMadeItMyself { get; private set; }
 
     public string[] Tags { get; private set; } = Array.Empty<string>();
-
-    public Author Author { get; private set; }
 
     private readonly List<Ingredient> _ingredients = new();
     public IReadOnlyCollection<Ingredient> Ingredients => _ingredients.AsReadOnly();
@@ -70,13 +65,6 @@ public class Recipe : BaseEntity
         QueueDomainEvent(new RecipeUpdated(){ Id = Id });
         return this;
     }
-
-    public Recipe SetAuthor(Author author)
-    {
-        Author = author;
-        return this;
-    }
-
     public Recipe AddIngredient(Ingredient ingredient)
     {
         _ingredients.Add(ingredient);

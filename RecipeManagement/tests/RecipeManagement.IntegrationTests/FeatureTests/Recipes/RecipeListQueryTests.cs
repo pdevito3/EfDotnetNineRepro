@@ -27,20 +27,4 @@ public class RecipeListQueryTests : TestBase
         // Assert
         recipes.Count.Should().BeGreaterThanOrEqualTo(2);
     }
-
-    [Fact]
-    public async Task must_be_permitted()
-    {
-        // Arrange
-        var testingServiceScope = new TestingServiceScope();
-        testingServiceScope.SetUserNotPermitted(Permissions.CanReadRecipes);
-        var queryParameters = new RecipeParametersDto();
-
-        // Act
-        var command = new GetRecipeList.Query(queryParameters);
-        Func<Task> act = () => testingServiceScope.SendAsync(command);
-
-        // Assert
-        await act.Should().ThrowAsync<ForbiddenAccessException>();
-    }
 }

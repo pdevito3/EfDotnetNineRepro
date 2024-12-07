@@ -16,13 +16,11 @@ public static class GetRecipeList
 {
     public sealed record Query(RecipeParametersDto QueryParameters) : IRequest<PagedList<RecipeDto>>;
 
-    public sealed class Handler(RecipesDbContext dbContext, IHeimGuardClient heimGuard)
+    public sealed class Handler(RecipesDbContext dbContext)
         : IRequestHandler<Query, PagedList<RecipeDto>>
     {
         public async Task<PagedList<RecipeDto>> Handle(Query request, CancellationToken cancellationToken)
         {
-            await heimGuard.MustHavePermission<ForbiddenAccessException>(Permissions.CanReadRecipes);
-
             var collection = dbContext.Recipes.AsNoTracking();
 
             var queryKitConfig = new CustomQueryKitConfiguration();

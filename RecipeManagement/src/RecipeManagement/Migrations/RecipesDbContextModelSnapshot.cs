@@ -17,55 +17,10 @@ namespace RecipeManagement.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("RecipeManagement.Domain.Authors.Author", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("created_by");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("last_modified_by");
-
-                    b.Property<DateTimeOffset?>("LastModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_modified_on");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<decimal?>("Ownership")
-                        .HasColumnType("numeric")
-                        .HasColumnName("ownership");
-
-                    b.Property<string>("PrimaryEmail")
-                        .HasColumnType("text")
-                        .HasColumnName("primary_email");
-
-                    b.HasKey("Id")
-                        .HasName("pk_authors");
-
-                    b.ToTable("authors", (string)null);
-                });
 
             modelBuilder.Entity("RecipeManagement.Domain.Ingredients.Ingredient", b =>
                 {
@@ -82,10 +37,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("best_time_of_day");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("created_by");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
@@ -97,14 +48,6 @@ namespace RecipeManagement.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("last_modified_by");
-
-                    b.Property<DateTimeOffset?>("LastModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_modified_on");
 
                     b.Property<string>("Measure")
                         .HasColumnType("text")
@@ -138,14 +81,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid?>("AuthorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("author_id");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("created_by");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
@@ -166,19 +101,11 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
 
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("last_modified_by");
-
-                    b.Property<DateTimeOffset?>("LastModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_modified_on");
-
                     b.Property<int?>("Rating")
                         .HasColumnType("integer")
                         .HasColumnName("rating");
 
-                    b.Property<string[]>("Tags")
+                    b.PrimitiveCollection<string[]>("Tags")
                         .HasColumnType("text[]")
                         .HasColumnName("tags");
 
@@ -193,51 +120,7 @@ namespace RecipeManagement.Migrations
                     b.HasKey("Id")
                         .HasName("pk_recipes");
 
-                    b.HasIndex("AuthorId")
-                        .HasDatabaseName("ix_recipes_author_id");
-
                     b.ToTable("recipes", (string)null);
-                });
-
-            modelBuilder.Entity("RecipeManagement.Domain.RolePermissions.RolePermission", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("created_by");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("last_modified_by");
-
-                    b.Property<DateTimeOffset?>("LastModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_modified_on");
-
-                    b.Property<string>("Permission")
-                        .HasColumnType("text")
-                        .HasColumnName("permission");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("text")
-                        .HasColumnName("role");
-
-                    b.HasKey("Id")
-                        .HasName("pk_role_permissions");
-
-                    b.ToTable("role_permissions", (string)null);
                 });
 
             modelBuilder.Entity("RecipeManagement.Domain.Users.User", b =>
@@ -246,10 +129,6 @@ namespace RecipeManagement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("created_by");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
@@ -270,14 +149,6 @@ namespace RecipeManagement.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("last_modified_by");
-
-                    b.Property<DateTimeOffset?>("LastModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_modified_on");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text")
@@ -300,10 +171,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("created_by");
-
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
@@ -311,14 +178,6 @@ namespace RecipeManagement.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("last_modified_by");
-
-                    b.Property<DateTimeOffset?>("LastModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("last_modified_on");
 
                     b.Property<string>("Role")
                         .HasColumnType("text")
@@ -347,16 +206,6 @@ namespace RecipeManagement.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("RecipeManagement.Domain.Recipes.Recipe", b =>
-                {
-                    b.HasOne("RecipeManagement.Domain.Authors.Author", "Author")
-                        .WithMany("Recipes")
-                        .HasForeignKey("AuthorId")
-                        .HasConstraintName("fk_recipes_authors_author_id");
-
-                    b.Navigation("Author");
-                });
-
             modelBuilder.Entity("RecipeManagement.Domain.Users.UserRole", b =>
                 {
                     b.HasOne("RecipeManagement.Domain.Users.User", "User")
@@ -365,11 +214,6 @@ namespace RecipeManagement.Migrations
                         .HasConstraintName("fk_user_roles_users_user_id");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("RecipeManagement.Domain.Authors.Author", b =>
-                {
-                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("RecipeManagement.Domain.Recipes.Recipe", b =>

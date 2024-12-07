@@ -30,34 +30,4 @@ public class RecipeQueryTests : TestBase
         recipe.Visibility.Should().Be(recipeOne.Visibility.Value);
         recipe.Rating.Should().Be(recipeOne.Rating.Value);
     }
-
-    [Fact]
-    public async Task get_recipe_throws_notfound_exception_when_record_does_not_exist()
-    {
-        // Arrange
-        var testingServiceScope = new TestingServiceScope();
-        var badId = Guid.NewGuid();
-
-        // Act
-        var query = new GetRecipe.Query(badId);
-        Func<Task> act = () => testingServiceScope.SendAsync(query);
-
-        // Assert
-        await act.Should().ThrowAsync<NotFoundException>();
-    }
-
-    [Fact]
-    public async Task must_be_permitted()
-    {
-        // Arrange
-        var testingServiceScope = new TestingServiceScope();
-        testingServiceScope.SetUserNotPermitted(Permissions.CanReadRecipes);
-
-        // Act
-        var command = new GetRecipe.Query(Guid.NewGuid());
-        Func<Task> act = () => testingServiceScope.SendAsync(command);
-
-        // Assert
-        await act.Should().ThrowAsync<ForbiddenAccessException>();
-    }
 }

@@ -50,10 +50,6 @@ public static class ServiceRegistration
         services.AddAuthorization(options =>
         {
         });
-
-        services.AddHeimGuard<UserPolicyHandler>()
-            .MapAuthorizationPolicies()
-            .AutomaticallyCheckPermissions();
     }
 }
     

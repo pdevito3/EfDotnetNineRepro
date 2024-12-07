@@ -16,8 +16,6 @@ public sealed class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         // Relationship Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
         builder.HasMany(x => x.Ingredients)
             .WithOne(x => x.Recipe);
-        builder.HasOne(x => x.Author)
-            .WithMany(x => x.Recipes);
 
         // Property Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
 

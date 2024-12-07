@@ -13,13 +13,11 @@ public static class GetRecipe
 {
     public sealed record Query(Guid RecipeId) : IRequest<RecipeDto>;
 
-    public sealed class Handler(RecipesDbContext dbContext, IHeimGuardClient heimGuard)
+    public sealed class Handler(RecipesDbContext dbContext)
         : IRequestHandler<Query, RecipeDto>
     {
         public async Task<RecipeDto> Handle(Query request, CancellationToken cancellationToken)
         {
-            await heimGuard.MustHavePermission<ForbiddenAccessException>(Permissions.CanReadRecipes);
-
             var result = await dbContext.Recipes
                 .AsNoTracking()
                 .GetById(request.RecipeId, cancellationToken);

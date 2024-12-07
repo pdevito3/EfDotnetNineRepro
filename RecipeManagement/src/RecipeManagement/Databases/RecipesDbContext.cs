@@ -6,10 +6,8 @@ using RecipeManagement.Services;
 using RecipeManagement.Exceptions;
 using Resources;
 using MediatR;
-using RecipeManagement.Domain.RolePermissions;
 using RecipeManagement.Domain.Users;
 using RecipeManagement.Domain.Recipes;
-using RecipeManagement.Domain.Authors;
 using RecipeManagement.Domain.Ingredients;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -18,19 +16,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Query;
 
-public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options, 
-    ICurrentUserService currentUserService, 
-    IMediator mediator, 
-    TimeProvider dateTimeProvider)
+public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
+    IMediator mediator)
     : DbContext(options)
 {
     #region DbSet Region - Do Not Delete
     public DbSet<Recipe> Recipes { get; set; }
-    public DbSet<Author> Authors { get; set; }
     public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<RolePermission> RolePermissions { get; set; }
     #endregion DbSet Region - Do Not Delete
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,17 +38,14 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
 
         #region Entity Database Config Region - Only delete if you don't want to automatically add configurations
         modelBuilder.ApplyConfiguration(new RecipeConfiguration());
-        modelBuilder.ApplyConfiguration(new AuthorConfiguration());
         modelBuilder.ApplyConfiguration(new IngredientConfiguration());
         modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
         #endregion Entity Database Config Region - Only delete if you don't want to automatically add configurations
     }
 
     public override int SaveChanges()
     {
-        UpdateAuditFields();
         var result = base.SaveChanges();
         _dispatchDomainEvents().GetAwaiter().GetResult();
         return result;
@@ -62,7 +53,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
-        UpdateAuditFields();
         var result = await base.SaveChangesAsync(cancellationToken);
         await _dispatchDomainEvents();
         return result;
@@ -81,31 +71,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
             entity.DomainEvents.Clear();
             foreach (var entityDomainEvent in events)
                 await mediator.Publish(entityDomainEvent);
-        }
-    }
-        
-    private void UpdateAuditFields()
-    {
-        var now = dateTimeProvider.GetUtcNow();
-        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
-        {
-            switch (entry.State)
-            {
-                case EntityState.Added:
-                    entry.Entity.UpdateCreationProperties(now, currentUserService?.UserId);
-                    entry.Entity.UpdateModifiedProperties(now, currentUserService?.UserId);
-                    break;
-
-                case EntityState.Modified:
-                    entry.Entity.UpdateModifiedProperties(now, currentUserService?.UserId);
-                    break;
-                
-                case EntityState.Deleted:
-                    entry.State = EntityState.Modified;
-                    entry.Entity.UpdateModifiedProperties(now, currentUserService?.UserId);
-                    entry.Entity.UpdateIsDeleted(true);
-                    break;
-            }
         }
     }
 }

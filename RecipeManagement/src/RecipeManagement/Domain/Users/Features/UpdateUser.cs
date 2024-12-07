@@ -15,13 +15,11 @@ public static class UpdateUser
 {
     public sealed record Command(Guid UserId, UserForUpdateDto UpdatedUserData) : IRequest;
 
-    public sealed class Handler(RecipesDbContext dbContext, IHeimGuardClient heimGuard)
+    public sealed class Handler(RecipesDbContext dbContext)
         : IRequestHandler<Command>
     {
         public async Task Handle(Command request, CancellationToken cancellationToken)
         {
-            await heimGuard.MustHavePermission<ForbiddenAccessException>(Permissions.CanUpdateUsers);
-
             var userToUpdate = await dbContext.Users.GetById(request.UserId, cancellationToken: cancellationToken);
             var userToAdd = request.UpdatedUserData.ToUserForUpdate();
             userToUpdate.Update(userToAdd);

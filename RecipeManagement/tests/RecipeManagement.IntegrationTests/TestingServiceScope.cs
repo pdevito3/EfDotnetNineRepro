@@ -17,7 +17,6 @@ public class TestingServiceScope
     public TestingServiceScope()
     {
         _scope = BaseScopeFactory.CreateScope();
-        SetUserIsPermitted();
     }
 
     public TScopedService GetService<TScopedService>()
@@ -89,23 +88,5 @@ public class TestingServiceScope
             }
             return db.SaveChangesAsync();
         });
-    }
-
-    public void SetUserNotPermitted(string permission)
-    {
-        var userPolicyHandler = GetService<IHeimGuardClient>();
-        userPolicyHandler.MustHavePermission<ForbiddenAccessException>(permission)
-            .ThrowsAsync(new ForbiddenAccessException());
-        userPolicyHandler.HasPermissionAsync(permission)
-            .Returns(false);
-    }
-
-    public void SetUserIsPermitted()
-    {
-        var userPolicyHandler = GetService<IHeimGuardClient>();
-        userPolicyHandler.MustHavePermission<ForbiddenAccessException>(Arg.Any<string>())
-            .Returns(Task.CompletedTask);
-        userPolicyHandler.HasPermissionAsync(Arg.Any<string>())
-            .Returns(true);
     }
 }

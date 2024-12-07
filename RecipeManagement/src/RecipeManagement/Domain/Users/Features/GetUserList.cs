@@ -16,13 +16,11 @@ public static class GetUserList
 {
     public sealed record Query(UserParametersDto QueryParameters) : IRequest<PagedList<UserDto>>;
 
-    public sealed class Handler(RecipesDbContext dbContext, IHeimGuardClient heimGuard)
+    public sealed class Handler(RecipesDbContext dbContext)
         : IRequestHandler<Query, PagedList<UserDto>>
     {
         public async Task<PagedList<UserDto>> Handle(Query request, CancellationToken cancellationToken)
         {
-            await heimGuard.MustHavePermission<ForbiddenAccessException>(Permissions.CanGetUsers);
-
             var collection = dbContext.Users.AsNoTracking();
 
             var queryKitConfig = new CustomQueryKitConfiguration();
