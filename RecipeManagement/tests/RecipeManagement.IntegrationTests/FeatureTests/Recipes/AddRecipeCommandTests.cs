@@ -29,7 +29,6 @@ public class AddRecipeCommandTests : TestBase
         recipeReturned.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
         recipeReturned.Tags.Should().BeEquivalentTo(recipeOne.Tags);
         recipeReturned.Visibility.Should().Be(recipeOne.Visibility);
-        recipeReturned.Rating.Should().Be(recipeOne.Rating);
 
         recipeCreated.Title.Should().Be(recipeOne.Title);
         recipeCreated.Directions.Should().Be(recipeOne.Directions);
@@ -37,6 +36,5 @@ public class AddRecipeCommandTests : TestBase
         recipeCreated.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
         recipeCreated.Tags.Should().BeEquivalentTo(recipeOne.Tags);
         recipeCreated.Visibility.Value.Should().Be(recipeOne.Visibility);
-        recipeCreated.Rating.Value.Should().Be(recipeOne.Rating);
     }
 }

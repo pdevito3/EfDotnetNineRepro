@@ -28,6 +28,5 @@ public class RecipeQueryTests : TestBase
         recipe.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
         recipe.Tags.Should().BeEquivalentTo(recipeOne.Tags);
         recipe.Visibility.Should().Be(recipeOne.Visibility.Value);
-        recipe.Rating.Should().Be(recipeOne.Rating.Value);
     }
 }

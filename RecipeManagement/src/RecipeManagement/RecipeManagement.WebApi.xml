@@ -59,41 +59,6 @@
             Deletes an existing Recipe record.
             </summary>
         </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.AddRole(System.Guid,System.String)">
-            <summary>
-            Adds a new role to a user.
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.RemoveRole(System.Guid,System.String)">
-            <summary>
-            Removes a role from a User
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.GetUsers(RecipeManagement.Domain.Users.Dtos.UserParametersDto)">
-            <summary>
-            Gets a list of all Users.
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.GetUser(System.Guid)">
-            <summary>
-            Gets a single User by ID.
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.AddUser(RecipeManagement.Domain.Users.Dtos.UserForCreationDto)">
-            <summary>
-            Creates a new User record.
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.UpdateUser(System.Guid,RecipeManagement.Domain.Users.Dtos.UserForUpdateDto)">
-            <summary>
-            Updates an entire existing User.
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.UsersController.DeleteUser(System.Guid)">
-            <summary>
-            Deletes an existing User record.
-            </summary>
-        </member>
         <member name="M:RecipeManagement.Databases.EntityConfigurations.IngredientConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{RecipeManagement.Domain.Ingredients.Ingredient})">
             <summary>
             The database configuration for Ingredients. 
@@ -102,46 +67,6 @@
         <member name="M:RecipeManagement.Databases.EntityConfigurations.RecipeConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{RecipeManagement.Domain.Recipes.Recipe})">
             <summary>
             The database configuration for Recipes. 
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Databases.EntityConfigurations.UserConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{RecipeManagement.Domain.Users.User})">
-            <summary>
-            The database configuration for Users. 
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Databases.EntityConfigurations.UserRoleConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{RecipeManagement.Domain.Users.UserRole})">
-            <summary>
-            The database configuration for UserRoles. 
-            </summary>
-        </member>
-        <member name="P:RecipeManagement.Domain.Addresses.Address.Line1">
-            <summary>
-            Address line 1 (e.g., street, PO Box, or company name).
-            </summary>
-        </member>
-        <member name="P:RecipeManagement.Domain.Addresses.Address.Line2">
-            <summary>
-            Address line 2 (e.g., apartment, suite, unit, or building).
-            </summary>
-        </member>
-        <member name="P:RecipeManagement.Domain.Addresses.Address.City">
-            <summary>
-            City, district, suburb, town, or village.
-            </summary>
-        </member>
-        <member name="P:RecipeManagement.Domain.Addresses.Address.State">
-            <summary>
-            State, county, province, or region.
-            </summary>
-        </member>
-        <member name="P:RecipeManagement.Domain.Addresses.Address.PostalCode">
-            <summary>
-            ZIP or postal code.
-            </summary>
-        </member>
-        <member name="P:RecipeManagement.Domain.Addresses.Address.Country">
-            <summary>
-            Two-letter country code <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">(ISO 3166-1 alpha-2)</a>.
             </summary>
         </member>
         <member name="M:RecipeManagement.Extensions.Services.WebAppServiceConfiguration.AddBoundaryServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])">

@@ -7,7 +7,6 @@ using Destructurama.Attributed;
 using RecipeManagement.Exceptions;
 using RecipeManagement.Domain.Ingredients.Models;
 using RecipeManagement.Domain.Ingredients.DomainEvents;
-using RecipeManagement.Domain.MonetaryAmounts;
 
 
 public class Ingredient : BaseEntity
@@ -21,8 +20,6 @@ public class Ingredient : BaseEntity
     public DateTimeOffset? BestTimeOfDay { get; private set; }
 
     public string Measure { get; private set; }
-
-   public MonetaryAmount AverageCost { get; private set; }
 
     public Recipe Recipe { get; }
 
@@ -38,7 +35,6 @@ public class Ingredient : BaseEntity
         newIngredient.ExpiresOn = ingredientForCreation.ExpiresOn;
         newIngredient.BestTimeOfDay = ingredientForCreation.BestTimeOfDay;
         newIngredient.Measure = ingredientForCreation.Measure;
-        newIngredient.AverageCost = MonetaryAmount.Of(ingredientForCreation.AverageCost);
 
         newIngredient.QueueDomainEvent(new IngredientCreated(){ Ingredient = newIngredient });
         
@@ -52,7 +48,6 @@ public class Ingredient : BaseEntity
         ExpiresOn = ingredientForUpdate.ExpiresOn;
         BestTimeOfDay = ingredientForUpdate.BestTimeOfDay;
         Measure = ingredientForUpdate.Measure;
-        AverageCost = MonetaryAmount.Of(ingredientForUpdate.AverageCost);
 
         QueueDomainEvent(new IngredientUpdated(){ Id = Id });
         return this;

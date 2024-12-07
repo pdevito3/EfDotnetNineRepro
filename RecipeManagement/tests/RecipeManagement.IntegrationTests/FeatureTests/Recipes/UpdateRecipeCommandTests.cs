@@ -33,6 +33,5 @@ public class UpdateRecipeCommandTests : TestBase
         updatedRecipe.HaveMadeItMyself.Should().Be(updatedRecipeDto.HaveMadeItMyself);
         updatedRecipe.Tags.Should().BeEquivalentTo(updatedRecipeDto.Tags);
         updatedRecipe.Visibility.Value.Should().Be(updatedRecipeDto.Visibility);
-        updatedRecipe.Rating.Value.Should().Be(updatedRecipeDto.Rating);
     }
 }

@@ -6,7 +6,6 @@ using RecipeManagement.Services;
 using RecipeManagement.Exceptions;
 using Resources;
 using MediatR;
-using RecipeManagement.Domain.Users;
 using RecipeManagement.Domain.Recipes;
 using RecipeManagement.Domain.Ingredients;
 using Microsoft.EntityFrameworkCore;
@@ -23,8 +22,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
     #region DbSet Region - Do Not Delete
     public DbSet<Recipe> Recipes { get; set; }
     public DbSet<Ingredient> Ingredients { get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
-    public DbSet<User> Users { get; set; }
     #endregion DbSet Region - Do Not Delete
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,8 +36,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
         #region Entity Database Config Region - Only delete if you don't want to automatically add configurations
         modelBuilder.ApplyConfiguration(new RecipeConfiguration());
         modelBuilder.ApplyConfiguration(new IngredientConfiguration());
-        modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
         #endregion Entity Database Config Region - Only delete if you don't want to automatically add configurations
     }
 
@@ -134,9 +129,5 @@ public static void FilterSoftDeletedRecords(this ModelBuilder modelBuilder)
         where TEntity : BaseEntity
     {
          return entity ?? throw new NotFoundException($"{typeof(TEntity).Name} was not found.");
-    }public static IQueryable<User> GetUserAggregate(this RecipesDbContext dbContext)
-{
-    return dbContext.Users
-        .Include(u => u.Roles);
-}
+    }
 }

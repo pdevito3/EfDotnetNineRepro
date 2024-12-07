@@ -32,6 +32,5 @@ public class UpdateIngredientCommandTests : TestBase
         updatedIngredient.ExpiresOn.Should().BeCloseTo((DateTime)updatedIngredientDto.ExpiresOn, 1.Seconds());
         updatedIngredient.BestTimeOfDay.Should().BeCloseTo((DateTimeOffset)updatedIngredientDto.BestTimeOfDay, 1.Seconds());
         updatedIngredient.Measure.Should().Be(updatedIngredientDto.Measure);
-        updatedIngredient.AverageCost.Amount.Should().BeApproximately(updatedIngredientDto.AverageCost, 0.005M);
     }
 }

@@ -1,7 +1,6 @@
 namespace RecipeManagement.Databases.EntityConfigurations;
 
 using RecipeManagement.Domain.Recipes;
-using RecipeManagement.Domain.UserRatings;
 using RecipeManagement.Domain.RecipeVisibilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -18,9 +17,6 @@ public sealed class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
             .WithOne(x => x.Recipe);
 
         // Property Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
-
-        builder.Property(x => x.Rating)
-            .HasConversion(x => x.Value, x => new UserRating(x));
 
         builder.Property(x => x.Visibility)
             .HasConversion(x => x.Value, x => new RecipeVisibility(x));

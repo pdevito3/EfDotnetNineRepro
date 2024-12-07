@@ -10,7 +10,6 @@ using RecipeManagement.Domain.Recipes.DomainEvents;
 using RecipeManagement.Domain.Ingredients;
 using RecipeManagement.Domain.Ingredients.Models;
 using RecipeManagement.Domain.RecipeVisibilities;
-using RecipeManagement.Domain.UserRatings;
 
 
 public class Recipe : BaseEntity
@@ -20,8 +19,6 @@ public class Recipe : BaseEntity
    public RecipeVisibility Visibility { get; private set; }
 
     public string Directions { get; private set; }
-
-   public UserRating Rating { get; private set; }
 
     public DateOnly? DateOfOrigin { get; private set; }
 
@@ -42,7 +39,6 @@ public class Recipe : BaseEntity
         newRecipe.Title = recipeForCreation.Title;
         newRecipe.Visibility = RecipeVisibility.Of(recipeForCreation.Visibility);
         newRecipe.Directions = recipeForCreation.Directions;
-        newRecipe.Rating = UserRating.Of(recipeForCreation.Rating);
         newRecipe.DateOfOrigin = recipeForCreation.DateOfOrigin;
         newRecipe.HaveMadeItMyself = recipeForCreation.HaveMadeItMyself;
         newRecipe.SetTags(recipeForCreation.Tags);
@@ -57,7 +53,6 @@ public class Recipe : BaseEntity
         Title = recipeForUpdate.Title;
         Visibility = RecipeVisibility.Of(recipeForUpdate.Visibility);
         Directions = recipeForUpdate.Directions;
-        Rating = UserRating.Of(recipeForUpdate.Rating);
         DateOfOrigin = recipeForUpdate.DateOfOrigin;
         HaveMadeItMyself = recipeForUpdate.HaveMadeItMyself;
         SetTags(recipeForUpdate.Tags);

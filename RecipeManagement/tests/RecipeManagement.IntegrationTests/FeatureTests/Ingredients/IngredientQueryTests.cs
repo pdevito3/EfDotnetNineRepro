@@ -27,7 +27,6 @@ public class IngredientQueryTests : TestBase
         ingredient.ExpiresOn.Should().BeCloseTo((DateTime)ingredientOne.ExpiresOn, 1.Seconds());
         ingredient.BestTimeOfDay.Should().BeCloseTo((DateTimeOffset)ingredientOne.BestTimeOfDay, 1.Seconds());
         ingredient.Measure.Should().Be(ingredientOne.Measure);
-        ingredient.AverageCost.Should().BeApproximately(ingredientOne.AverageCost.Amount, 0.005M);
     }
 
     [Fact]

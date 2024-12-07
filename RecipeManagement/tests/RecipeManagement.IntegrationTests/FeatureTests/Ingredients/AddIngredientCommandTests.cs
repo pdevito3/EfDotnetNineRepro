@@ -28,13 +28,11 @@ public class AddIngredientCommandTests : TestBase
         ingredientReturned.ExpiresOn.Should().BeCloseTo((DateTime)ingredientOne.ExpiresOn, 1.Seconds());
         ingredientReturned.BestTimeOfDay.Should().BeCloseTo((DateTimeOffset)ingredientOne.BestTimeOfDay, 1.Seconds());
         ingredientReturned.Measure.Should().Be(ingredientOne.Measure);
-        ingredientReturned.AverageCost.Should().BeApproximately(ingredientOne.AverageCost, 0.005M);
 
         ingredientCreated.Name.Should().Be(ingredientOne.Name);
         ingredientCreated.Quantity.Should().Be(ingredientOne.Quantity);
         ingredientCreated.ExpiresOn.Should().BeCloseTo((DateTime)ingredientOne.ExpiresOn, 1.Seconds());
         ingredientCreated.BestTimeOfDay.Should().BeCloseTo((DateTimeOffset)ingredientOne.BestTimeOfDay, 1.Seconds());
         ingredientCreated.Measure.Should().Be(ingredientOne.Measure);
-        ingredientCreated.AverageCost.Amount.Should().BeApproximately(ingredientOne.AverageCost, 0.005M);
     }
 }

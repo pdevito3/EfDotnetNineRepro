@@ -1,7 +1,6 @@
 namespace RecipeManagement.Databases.EntityConfigurations;
 
 using RecipeManagement.Domain.Ingredients;
-using RecipeManagement.Domain.MonetaryAmounts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,9 +14,6 @@ public sealed class IngredientConfiguration : IEntityTypeConfiguration<Ingredien
         // Relationship Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
 
         // Property Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
-
-        builder.Property(x => x.AverageCost)
-            .HasConversion(x => x.Amount, x => new MonetaryAmount(x));
         
         // example for a more complex value object
         // builder.OwnsOne(x => x.PhysicalAddress, opts =>
