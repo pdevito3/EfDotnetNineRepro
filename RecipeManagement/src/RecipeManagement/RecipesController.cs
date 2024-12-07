@@ -18,35 +18,6 @@ public sealed class RecipesController(IMediator mediator): ControllerBase
 {    
 
     /// <summary>
-    /// Gets a list of all Recipes.
-    /// </summary>
-    [HttpGet(Name = "GetRecipes")]
-    public async Task<IActionResult> GetRecipes([FromQuery] RecipeParametersDto recipeParametersDto)
-    {
-        var query = new GetRecipeList.Query(recipeParametersDto);
-        var queryResponse = await mediator.Send(query);
-
-        var paginationMetadata = new
-        {
-            totalCount = queryResponse.TotalCount,
-            pageSize = queryResponse.PageSize,
-            currentPageSize = queryResponse.CurrentPageSize,
-            currentStartIndex = queryResponse.CurrentStartIndex,
-            currentEndIndex = queryResponse.CurrentEndIndex,
-            pageNumber = queryResponse.PageNumber,
-            totalPages = queryResponse.TotalPages,
-            hasPrevious = queryResponse.HasPrevious,
-            hasNext = queryResponse.HasNext
-        };
-
-        Response.Headers.Append("X-Pagination",
-            JsonSerializer.Serialize(paginationMetadata));
-
-        return Ok(queryResponse);
-    }
-
-
-    /// <summary>
     /// Gets a single Recipe by ID.
     /// </summary>
     [HttpGet("{recipeId:guid}", Name = "GetRecipe")]

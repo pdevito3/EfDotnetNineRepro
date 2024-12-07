@@ -1,11 +1,9 @@
-namespace RecipeManagement.IntegrationTests.FeatureTests.Recipes;
+namespace RecipeManagement.IntegrationTests;
 
-using RecipeManagement.SharedTestHelpers.Fakes.Recipe;
-using Domain;
-using FluentAssertions.Extensions;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using RecipeManagement.Domain.Recipes.Features;
+using RecipeManagement.SharedTestHelpers.Fakes.Recipe;
 
 public class AddRecipeCommandTests : TestBase
 {

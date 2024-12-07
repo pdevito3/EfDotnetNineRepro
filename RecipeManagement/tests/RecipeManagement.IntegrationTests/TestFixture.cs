@@ -30,7 +30,7 @@ public class TestFixture : IAsyncLifetime
     {
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
-            EnvironmentName = Consts.Testing.IntegrationTestingEnvName
+            EnvironmentName = "LocalIntegrationTesting"
         });
 
         _dbContainer = new PostgreSqlBuilder().Build();
@@ -40,10 +40,6 @@ public class TestFixture : IAsyncLifetime
         
         builder.ConfigureServices();
         var services = builder.Services;
-
-        // add any mock services here
-        services.ReplaceServiceWithSingletonMock<IHttpContextAccessor>();
-        services.ReplaceServiceWithSingletonMock<IBackgroundJobClient>();
 
         var provider = services.BuildServiceProvider();
         BaseScopeFactory = provider.GetService<IServiceScopeFactory>();
@@ -61,16 +57,5 @@ public class TestFixture : IAsyncLifetime
     public async Task DisposeAsync()
     {        
         await _dbContainer.DisposeAsync();
-    }
-}
-
-public static class ServiceCollectionServiceExtensions
-{
-    public static IServiceCollection ReplaceServiceWithSingletonMock<TService>(this IServiceCollection services)
-        where TService : class
-    {
-        services.RemoveAll(typeof(TService));
-        services.AddSingleton(_ => Substitute.For<TService>());
-        return services;
     }
 }

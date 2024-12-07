@@ -42,8 +42,4 @@
     <PackageReference Include="Serilog.Settings.Configuration" />
     <PackageReference Include="Serilog.Sinks.Console" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Databases\" />
-    <Folder Include="Extensions\Services\" />
-  </ItemGroup>
 </Project>

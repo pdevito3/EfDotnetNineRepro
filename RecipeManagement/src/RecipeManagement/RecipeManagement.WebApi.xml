@@ -4,10 +4,17 @@
         <name>RecipeManagement</name>
     </assembly>
     <members>
-        <member name="M:RecipeManagement.Controllers.v1.RecipesController.GetRecipes(RecipeManagement.Domain.Recipes.Dtos.RecipeParametersDto)">
-            <summary>
-            Gets a list of all Recipes.
-            </summary>
+        <member name="T:RecipeManagement.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:RecipeManagement.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:RecipeManagement.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:RecipeManagement.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
         <member name="M:RecipeManagement.Controllers.v1.RecipesController.GetRecipe(System.Guid)">
             <summary>
@@ -28,18 +35,6 @@
             <summary>
             Deletes an existing Recipe record.
             </summary>
-        </member>
-        <member name="T:RecipeManagement.Migrations.Initial">
-            <inheritdoc />
-        </member>
-        <member name="M:RecipeManagement.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:RecipeManagement.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:RecipeManagement.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
         </member>
     </members>
 </doc>
