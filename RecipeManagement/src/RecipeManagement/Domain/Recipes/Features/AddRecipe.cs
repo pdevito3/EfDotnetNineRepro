@@ -4,7 +4,6 @@ using RecipeManagement.Databases;
 using RecipeManagement.Domain.Recipes;
 using RecipeManagement.Domain.Recipes.Dtos;
 using RecipeManagement.Domain.Recipes.Models;
-using RecipeManagement.Services;
 using RecipeManagement.Exceptions;
 using Mappings;
 using MediatR;

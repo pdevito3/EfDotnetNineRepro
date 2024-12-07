@@ -34,11 +34,6 @@
             The database configuration for Recipes. 
             </summary>
         </member>
-        <member name="M:RecipeManagement.Extensions.Services.WebAppServiceConfiguration.AddBoundaryServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])">
-            <summary>
-            Registers all services in the assembly of the given interface.
-            </summary>
-        </member>
         <member name="T:RecipeManagement.Migrations.Initial">
             <inheritdoc />
         </member>

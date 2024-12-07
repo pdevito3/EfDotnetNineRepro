@@ -1,7 +1,6 @@
 namespace RecipeManagement.Domain.Recipes.Features;
 
 using RecipeManagement.Databases;
-using RecipeManagement.Services;
 using RecipeManagement.Exceptions;
 using MediatR;
 

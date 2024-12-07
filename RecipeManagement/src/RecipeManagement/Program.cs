@@ -3,8 +3,6 @@ using Serilog;
 using Hangfire;
 using RecipeManagement.Extensions.Application;
 using RecipeManagement.Extensions.Services;
-using RecipeManagement.Databases;
-using RecipeManagement.Resources.HangfireUtilities;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
@@ -34,9 +32,6 @@ else
 // A slightly less secure option would be to redirect http to 400, 505, etc.
 app.UseHttpsRedirection();
 
-app.UseCors("RecipeManagementCorsPolicy");
-
-app.MapHealthChecks("api/health");
 app.UseSerilogRequestLogging();
 app.UseRouting();
 
@@ -44,12 +39,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseHangfireDashboard("/hangfire", new DashboardOptions
-{
-    AsyncAuthorization = new[] { new HangfireAuthorizationFilter(scope.ServiceProvider) },
-    IgnoreAntiforgeryToken = true
-});
 
 app.UseSwaggerExtension(builder.Configuration, builder.Environment);
 

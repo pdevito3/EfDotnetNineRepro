@@ -2,7 +2,6 @@ namespace RecipeManagement.Databases;
 
 using RecipeManagement.Domain;
 using RecipeManagement.Databases.EntityConfigurations;
-using RecipeManagement.Services;
 using RecipeManagement.Exceptions;
 using Resources;
 using MediatR;
