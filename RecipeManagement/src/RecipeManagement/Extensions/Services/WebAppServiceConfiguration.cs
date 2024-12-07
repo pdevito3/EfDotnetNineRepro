@@ -28,9 +28,7 @@ public static class WebAppServiceConfiguration
 
         // TODO update CORS for your env
         builder.Services.AddCorsService("RecipeManagementCorsPolicy", builder.Environment);
-        builder.OpenTelemetryRegistration(builder.Configuration, "RecipeManagement");
         builder.Services.AddInfrastructure(builder.Environment, builder.Configuration);
-        builder.Services.AddMassTransitServices(builder.Environment, builder.Configuration);
 
         builder.Services.AddControllers()
             .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
