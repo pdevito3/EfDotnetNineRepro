@@ -1,14 +1,10 @@
 namespace RecipeManagement.Domain.Recipes;
 
 using System.ComponentModel.DataAnnotations;
-using RecipeManagement.Domain.Ingredients;
-using System.ComponentModel.DataAnnotations.Schema;
 using Destructurama.Attributed;
 using RecipeManagement.Exceptions;
 using RecipeManagement.Domain.Recipes.Models;
 using RecipeManagement.Domain.Recipes.DomainEvents;
-using RecipeManagement.Domain.Ingredients;
-using RecipeManagement.Domain.Ingredients.Models;
 using RecipeManagement.Domain.RecipeVisibilities;
 
 
@@ -25,9 +21,6 @@ public class Recipe : BaseEntity
     public bool HaveMadeItMyself { get; private set; }
 
     public string[] Tags { get; private set; } = Array.Empty<string>();
-
-    private readonly List<Ingredient> _ingredients = new();
-    public IReadOnlyCollection<Ingredient> Ingredients => _ingredients.AsReadOnly();
 
     // Add Props Marker -- Deleting this comment will cause the add props utility to be incomplete
 
@@ -60,18 +53,7 @@ public class Recipe : BaseEntity
         QueueDomainEvent(new RecipeUpdated(){ Id = Id });
         return this;
     }
-    public Recipe AddIngredient(Ingredient ingredient)
-    {
-        _ingredients.Add(ingredient);
-        return this;
-    }
     
-    public Recipe RemoveIngredient(Ingredient ingredient)
-    {
-        _ingredients.RemoveAll(x => x.Id == ingredient.Id);
-        return this;
-    }
-
     public Recipe AddTag(string tag)
     {
         Tags ??= Array.Empty<string>();

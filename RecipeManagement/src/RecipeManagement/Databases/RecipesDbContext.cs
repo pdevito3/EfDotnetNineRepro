@@ -7,7 +7,6 @@ using RecipeManagement.Exceptions;
 using Resources;
 using MediatR;
 using RecipeManagement.Domain.Recipes;
-using RecipeManagement.Domain.Ingredients;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
@@ -21,7 +20,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
 {
     #region DbSet Region - Do Not Delete
     public DbSet<Recipe> Recipes { get; set; }
-    public DbSet<Ingredient> Ingredients { get; set; }
     #endregion DbSet Region - Do Not Delete
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,7 +33,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
 
         #region Entity Database Config Region - Only delete if you don't want to automatically add configurations
         modelBuilder.ApplyConfiguration(new RecipeConfiguration());
-        modelBuilder.ApplyConfiguration(new IngredientConfiguration());
         #endregion Entity Database Config Region - Only delete if you don't want to automatically add configurations
     }
 

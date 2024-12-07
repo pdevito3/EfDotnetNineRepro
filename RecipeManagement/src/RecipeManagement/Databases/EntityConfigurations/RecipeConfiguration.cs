@@ -13,8 +13,6 @@ public sealed class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
     public void Configure(EntityTypeBuilder<Recipe> builder)
     {
         // Relationship Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
-        builder.HasMany(x => x.Ingredients)
-            .WithOne(x => x.Recipe);
 
         // Property Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
 
