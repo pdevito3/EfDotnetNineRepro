@@ -29,11 +29,6 @@
             Deletes an existing Recipe record.
             </summary>
         </member>
-        <member name="M:RecipeManagement.Databases.EntityConfigurations.RecipeConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{RecipeManagement.Domain.Recipes.Recipe})">
-            <summary>
-            The database configuration for Recipes. 
-            </summary>
-        </member>
         <member name="T:RecipeManagement.Migrations.Initial">
             <inheritdoc />
         </member>

@@ -1,7 +1,6 @@
 namespace RecipeManagement.Databases;
 
 using RecipeManagement.Domain;
-using RecipeManagement.Databases.EntityConfigurations;
 using RecipeManagement.Exceptions;
 using Resources;
 using MediatR;
@@ -23,10 +22,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        #region Entity Database Config Region - Only delete if you don't want to automatically add configurations
-        modelBuilder.ApplyConfiguration(new RecipeConfiguration());
-        #endregion Entity Database Config Region - Only delete if you don't want to automatically add configurations
     }
 
     public override int SaveChanges()
