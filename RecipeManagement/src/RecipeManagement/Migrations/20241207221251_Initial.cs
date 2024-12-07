@@ -21,9 +21,7 @@ namespace RecipeManagement.Migrations
                     directions = table.Column<string>(type: "text", nullable: true),
                     date_of_origin = table.Column<DateOnly>(type: "date", nullable: true),
                     have_made_it_myself = table.Column<bool>(type: "boolean", nullable: false),
-                    tags = table.Column<string[]>(type: "text[]", nullable: true),
-                    created_on = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    is_deleted = table.Column<bool>(type: "boolean", nullable: false)
+                    tags = table.Column<string[]>(type: "text[]", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -41,23 +41,4 @@ public class DeleteRecipeCommandTests : TestBase
         // Assert
         await act.Should().ThrowAsync<NotFoundException>();
     }
-
-    [Fact]
-    public async Task can_softdelete_recipe_from_db()
-    {
-        // Arrange
-        var testingServiceScope = new TestingServiceScope();
-        var recipe = new FakeRecipeBuilder().Build();
-        await testingServiceScope.InsertAsync(recipe);
-
-        // Act
-        var command = new DeleteRecipe.Command(recipe.Id);
-        await testingServiceScope.SendAsync(command);
-        var deletedRecipe = await testingServiceScope.ExecuteDbContextAsync(db => db.Recipes
-            .IgnoreQueryFilters()
-            .FirstOrDefaultAsync(x => x.Id == recipe.Id));
-
-        // Assert
-        deletedRecipe?.IsDeleted.Should().BeTrue();
-    }
 }

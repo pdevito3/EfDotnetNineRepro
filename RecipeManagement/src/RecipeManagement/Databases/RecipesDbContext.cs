@@ -14,8 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Query;
 
-public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
-    IMediator mediator)
+public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
     : DbContext(options)
 {
     #region DbSet Region - Do Not Delete
@@ -25,11 +24,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.FilterSoftDeletedRecords();
-        /* any query filters added after this will override soft delete 
-                https://docs.microsoft.com/en-us/ef/core/querying/filters
-                https://github.com/dotnet/efcore/issues/10275
-        */
 
         #region Entity Database Config Region - Only delete if you don't want to automatically add configurations
         modelBuilder.ApplyConfiguration(new RecipeConfiguration());
@@ -51,22 +45,6 @@ public sealed class RecipesDbContext(DbContextOptions<RecipesDbContext> options,
 
 public static class Extensions
 {
-public static void FilterSoftDeletedRecords(this ModelBuilder modelBuilder)
-{
-    Expression<Func<BaseEntity, bool>> filterExpr = e => !e.IsDeleted;
-    foreach (var mutableEntityType in modelBuilder.Model.GetEntityTypes()
-        .Where(m => m.ClrType.IsAssignableTo(typeof(BaseEntity))))
-    {
-        // modify expression to handle correct child type
-        var parameter = Expression.Parameter(mutableEntityType.ClrType);
-        var body = ReplacingExpressionVisitor
-            .Replace(filterExpr.Parameters.First(), parameter, filterExpr.Body);
-        var lambdaExpression = Expression.Lambda(body, parameter);
-
-        // set filter
-        mutableEntityType.SetQueryFilter(lambdaExpression);
-    }
-}
 
     public static async Task<TEntity> GetByIdOrDefault<TEntity>(this DbSet<TEntity> dbSet, 
         Guid id, 

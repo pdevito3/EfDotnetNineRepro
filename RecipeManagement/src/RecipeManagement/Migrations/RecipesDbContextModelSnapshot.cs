@@ -29,10 +29,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
                     b.Property<DateOnly?>("DateOfOrigin")
                         .HasColumnType("date")
                         .HasColumnName("date_of_origin");
@@ -44,10 +40,6 @@ namespace RecipeManagement.Migrations
                     b.Property<bool>("HaveMadeItMyself")
                         .HasColumnType("boolean")
                         .HasColumnName("have_made_it_myself");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_deleted");
 
                     b.PrimitiveCollection<string[]>("Tags")
                         .HasColumnType("text[]")

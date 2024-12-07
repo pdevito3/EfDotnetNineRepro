@@ -68,7 +68,7 @@ public class TestFixture : IAsyncLifetime
         var options = new DbContextOptionsBuilder<RecipesDbContext>()
             .UseNpgsql(connectionString)
             .Options;
-        var context = new RecipesDbContext(options, null);
+        var context = new RecipesDbContext(options);
         await context?.Database?.MigrateAsync();
     }
 
