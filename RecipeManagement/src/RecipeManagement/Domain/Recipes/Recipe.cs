@@ -4,14 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using Destructurama.Attributed;
 using RecipeManagement.Exceptions;
 using RecipeManagement.Domain.Recipes.Models;
-using RecipeManagement.Domain.RecipeVisibilities;
 
 
 public class Recipe : BaseEntity
 {
     public string Title { get; private set; }
-
-   public RecipeVisibility Visibility { get; private set; }
 
     public string Directions { get; private set; }
 
@@ -29,7 +26,6 @@ public class Recipe : BaseEntity
         var newRecipe = new Recipe();
 
         newRecipe.Title = recipeForCreation.Title;
-        newRecipe.Visibility = RecipeVisibility.Of(recipeForCreation.Visibility);
         newRecipe.Directions = recipeForCreation.Directions;
         newRecipe.DateOfOrigin = recipeForCreation.DateOfOrigin;
         newRecipe.HaveMadeItMyself = recipeForCreation.HaveMadeItMyself;
@@ -41,7 +37,6 @@ public class Recipe : BaseEntity
     public Recipe Update(RecipeForUpdate recipeForUpdate)
     {
         Title = recipeForUpdate.Title;
-        Visibility = RecipeVisibility.Of(recipeForUpdate.Visibility);
         Directions = recipeForUpdate.Directions;
         DateOfOrigin = recipeForUpdate.DateOfOrigin;
         HaveMadeItMyself = recipeForUpdate.HaveMadeItMyself;

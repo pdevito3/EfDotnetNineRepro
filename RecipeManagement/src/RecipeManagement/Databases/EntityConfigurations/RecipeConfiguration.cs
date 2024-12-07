@@ -1,7 +1,6 @@
 namespace RecipeManagement.Databases.EntityConfigurations;
 
 using RecipeManagement.Domain.Recipes;
-using RecipeManagement.Domain.RecipeVisibilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,8 +15,6 @@ public sealed class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
 
         // Property Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
 
-        builder.Property(x => x.Visibility)
-            .HasConversion(x => x.Value, x => new RecipeVisibility(x));
         builder.Property(x => x.Tags).HasColumnType("text[]");
         
         // example for a more complex value object

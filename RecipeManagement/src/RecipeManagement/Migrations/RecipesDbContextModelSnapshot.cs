@@ -49,10 +49,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("text")
                         .HasColumnName("title");
 
-                    b.Property<string>("Visibility")
-                        .HasColumnType("text")
-                        .HasColumnName("visibility");
-
                     b.HasKey("Id")
                         .HasName("pk_recipes");
 

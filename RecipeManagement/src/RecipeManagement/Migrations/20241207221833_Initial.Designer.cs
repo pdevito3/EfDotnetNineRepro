@@ -12,7 +12,7 @@ using RecipeManagement.Databases;
 namespace RecipeManagement.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20241207221251_Initial")]
+    [Migration("20241207221833_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -51,10 +51,6 @@ namespace RecipeManagement.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text")
                         .HasColumnName("title");
-
-                    b.Property<string>("Visibility")
-                        .HasColumnType("text")
-                        .HasColumnName("visibility");
 
                     b.HasKey("Id")
                         .HasName("pk_recipes");

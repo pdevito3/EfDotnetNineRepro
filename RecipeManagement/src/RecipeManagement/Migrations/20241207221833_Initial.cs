@@ -17,7 +17,6 @@ namespace RecipeManagement.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     title = table.Column<string>(type: "text", nullable: true),
-                    visibility = table.Column<string>(type: "text", nullable: true),
                     directions = table.Column<string>(type: "text", nullable: true),
                     date_of_origin = table.Column<DateOnly>(type: "date", nullable: true),
                     have_made_it_myself = table.Column<bool>(type: "boolean", nullable: false),
