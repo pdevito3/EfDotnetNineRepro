@@ -12,7 +12,7 @@ using RecipeManagement.Databases;
 namespace RecipeManagement.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20241207222319_Initial")]
+    [Migration("20241207222749_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
