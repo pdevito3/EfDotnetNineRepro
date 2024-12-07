@@ -35,9 +35,6 @@ app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
 app.UseRouting();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.MapControllers();
 
 app.UseSwaggerExtension(builder.Configuration, builder.Environment);

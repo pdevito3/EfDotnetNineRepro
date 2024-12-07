@@ -29,22 +29,5 @@ public static class ServiceRegistration
                             .UseSnakeCaseNamingConvention());
 
         services.AddHostedService<MigrationHostedService<RecipesDbContext>>();
-
-        // Auth -- Do Not Delete
-        var authOptions = configuration.GetAuthOptions();
-        if (!env.IsEnvironment(Consts.Testing.FunctionalTestingEnvName))
-        {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = authOptions.Authority;
-                    options.Audience = authOptions.Audience;
-                    options.RequireHttpsMetadata = !env.IsDevelopment();
-                });
-        }
-
-        services.AddAuthorization(options =>
-        {
-        });
     }
 }
