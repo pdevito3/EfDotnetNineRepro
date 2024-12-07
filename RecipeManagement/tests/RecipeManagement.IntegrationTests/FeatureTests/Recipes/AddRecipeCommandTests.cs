@@ -27,12 +27,12 @@ public class AddRecipeCommandTests : TestBase
         recipeReturned.Directions.Should().Be(recipeOne.Directions);
         recipeReturned.DateOfOrigin.Should().Be(recipeOne.DateOfOrigin);
         recipeReturned.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
-        recipeReturned.Tags.Should().BeEquivalentTo(recipeOne.Tags);
+
 
         recipeCreated.Title.Should().Be(recipeOne.Title);
         recipeCreated.Directions.Should().Be(recipeOne.Directions);
         recipeCreated.DateOfOrigin.Should().Be(recipeOne.DateOfOrigin);
         recipeCreated.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
-        recipeCreated.Tags.Should().BeEquivalentTo(recipeOne.Tags);
+
     }
 }

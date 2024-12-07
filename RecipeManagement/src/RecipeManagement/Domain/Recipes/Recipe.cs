@@ -16,8 +16,6 @@ public class Recipe : BaseEntity
 
     public bool HaveMadeItMyself { get; private set; }
 
-    public string[] Tags { get; private set; } = Array.Empty<string>();
-
     // Add Props Marker -- Deleting this comment will cause the add props utility to be incomplete
 
 
@@ -29,7 +27,7 @@ public class Recipe : BaseEntity
         newRecipe.Directions = recipeForCreation.Directions;
         newRecipe.DateOfOrigin = recipeForCreation.DateOfOrigin;
         newRecipe.HaveMadeItMyself = recipeForCreation.HaveMadeItMyself;
-        newRecipe.SetTags(recipeForCreation.Tags);
+
         
         return newRecipe;
     }
@@ -40,31 +38,11 @@ public class Recipe : BaseEntity
         Directions = recipeForUpdate.Directions;
         DateOfOrigin = recipeForUpdate.DateOfOrigin;
         HaveMadeItMyself = recipeForUpdate.HaveMadeItMyself;
-        SetTags(recipeForUpdate.Tags);
+
 
         return this;
     }
     
-    public Recipe AddTag(string tag)
-    {
-        Tags ??= Array.Empty<string>();
-        Tags = Tags.Append(tag).ToArray();
-        return this;
-    }
-
-    public Recipe RemoveTag(string tag)
-    {
-        Tags ??= Array.Empty<string>();
-        Tags = Tags.Where(x => x != tag).ToArray();
-        return this;
-    }
-
-    public Recipe SetTags(string[] tags)
-    {
-        Tags = tags;
-        return this;
-    }
-
     // Add Prop Methods Marker -- Deleting this comment will cause the add props utility to be incomplete
     
     protected Recipe() { } // For EF + Mocking

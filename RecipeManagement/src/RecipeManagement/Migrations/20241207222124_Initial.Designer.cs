@@ -12,7 +12,7 @@ using RecipeManagement.Databases;
 namespace RecipeManagement.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20241207221833_Initial")]
+    [Migration("20241207222124_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -43,10 +43,6 @@ namespace RecipeManagement.Migrations
                     b.Property<bool>("HaveMadeItMyself")
                         .HasColumnType("boolean")
                         .HasColumnName("have_made_it_myself");
-
-                    b.PrimitiveCollection<string[]>("Tags")
-                        .HasColumnType("text[]")
-                        .HasColumnName("tags");
 
                     b.Property<string>("Title")
                         .HasColumnType("text")

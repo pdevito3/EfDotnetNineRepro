@@ -41,10 +41,6 @@ namespace RecipeManagement.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("have_made_it_myself");
 
-                    b.PrimitiveCollection<string[]>("Tags")
-                        .HasColumnType("text[]")
-                        .HasColumnName("tags");
-
                     b.Property<string>("Title")
                         .HasColumnType("text")
                         .HasColumnName("title");

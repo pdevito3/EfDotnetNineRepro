@@ -26,6 +26,6 @@ public class RecipeQueryTests : TestBase
         recipe.Directions.Should().Be(recipeOne.Directions);
         recipe.DateOfOrigin.Should().Be(recipeOne.DateOfOrigin);
         recipe.HaveMadeItMyself.Should().Be(recipeOne.HaveMadeItMyself);
-        recipe.Tags.Should().BeEquivalentTo(recipeOne.Tags);
+
     }
 }

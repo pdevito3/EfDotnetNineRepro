@@ -15,7 +15,6 @@ public sealed class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
 
         // Property Marker -- Deleting or modifying this comment could cause incomplete relationship scaffolding
 
-        builder.Property(x => x.Tags).HasColumnType("text[]");
         
         // example for a more complex value object
         // builder.OwnsOne(x => x.PhysicalAddress, opts =>

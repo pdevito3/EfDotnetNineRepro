@@ -9,6 +9,5 @@ public sealed record RecipeForUpdate
     public int? Rating { get; set; }
     public DateOnly? DateOfOrigin { get; set; }
     public bool HaveMadeItMyself { get; set; }
-    public string[] Tags { get; set; } = Array.Empty<string>();
 
 }

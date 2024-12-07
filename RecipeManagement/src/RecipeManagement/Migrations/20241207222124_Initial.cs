@@ -19,8 +19,7 @@ namespace RecipeManagement.Migrations
                     title = table.Column<string>(type: "text", nullable: true),
                     directions = table.Column<string>(type: "text", nullable: true),
                     date_of_origin = table.Column<DateOnly>(type: "date", nullable: true),
-                    have_made_it_myself = table.Column<bool>(type: "boolean", nullable: false),
-                    tags = table.Column<string[]>(type: "text[]", nullable: true)
+                    have_made_it_myself = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
