@@ -8,7 +8,6 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -18,7 +17,6 @@ public static class SwaggerServiceExtension
         IConfiguration configuration)
     {
         var authOptions = configuration.GetAuthOptions();
-        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         services.AddSwaggerGen(config =>
         {
             config.CustomSchemaIds(type => type.ToString().Replace("+", "."));
@@ -65,21 +63,5 @@ public static class SwaggerServiceExtension
 
             config.IncludeXmlComments(string.Format(@$"{AppDomain.CurrentDomain.BaseDirectory}{Path.DirectorySeparatorChar}RecipeManagement.WebApi.xml"));
         });
-    }
-}
-
-public class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) : IConfigureOptions<SwaggerGenOptions>
-{
-    public void Configure(SwaggerGenOptions options)
-    {
-        foreach (var description in provider.ApiVersionDescriptions)
-        {
-            options.SwaggerDoc(description.GroupName, new OpenApiInfo
-            {
-                Version = description.ApiVersion.ToString(),
-                Title = "",
-                Description = ""
-            });
-        }
     }
 }

@@ -1,7 +1,6 @@
 using Destructurama;
 using Serilog;
 using Hangfire;
-using Hellang.Middleware.ProblemDetails;
 using RecipeManagement.Extensions.Application;
 using RecipeManagement.Extensions.Services;
 using RecipeManagement.Databases;
@@ -30,7 +29,6 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-app.UseProblemDetails();
 
 // For elevated security, it is recommended to remove this middleware and set your server to only listen on https.
 // A slightly less secure option would be to redirect http to 400, 505, etc.

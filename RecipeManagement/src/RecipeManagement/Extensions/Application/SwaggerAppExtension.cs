@@ -14,21 +14,22 @@ public static class SwaggerAppExtension
         {
             app.UseSwagger();
             app.UseSwaggerUI(
-            config =>
-            {
-                var descriptions = app.DescribeApiVersions();
-                foreach (var description in descriptions)
-                {
-                    var url = $"/swagger/{description.GroupName}/swagger.json";
-                    var name = description.GroupName.ToUpperInvariant();
-                    config.SwaggerEndpoint(url, name);
-                }
-                config.DocExpansion(DocExpansion.None);
-                var authOptions = configuration.GetAuthOptions();
-                config.OAuthClientId(authOptions.ClientId);
-                config.OAuthClientSecret(authOptions.ClientSecret);
-                config.OAuthUsePkce();
-            });
+            // config =>
+            // {
+            //     var descriptions = app.DescribeApiVersions();
+            //     foreach (var description in descriptions)
+            //     {
+            //         var url = $"/swagger/{description.GroupName}/swagger.json";
+            //         var name = description.GroupName.ToUpperInvariant();
+            //         config.SwaggerEndpoint(url, name);
+            //     }
+            //     config.DocExpansion(DocExpansion.None);
+            //     var authOptions = configuration.GetAuthOptions();
+            //     config.OAuthClientId(authOptions.ClientId);
+            //     config.OAuthClientSecret(authOptions.ClientSecret);
+            //     config.OAuthUsePkce();
+            // }
+            );
         }
     }
 }

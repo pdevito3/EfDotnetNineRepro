@@ -10,19 +10,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Threading.Tasks;
 using System.Threading;
-using Asp.Versioning;
 using MediatR;
 
 [ApiController]
-[Route("api/v{v:apiVersion}/recipes")]
-[ApiVersion("1.0")]
+[Route("api/recipes")]
 public sealed class RecipesController(IMediator mediator): ControllerBase
 {    
 
     /// <summary>
     /// Gets a list of all Recipes.
     /// </summary>
-    [Authorize]
     [HttpGet(Name = "GetRecipes")]
     public async Task<IActionResult> GetRecipes([FromQuery] RecipeParametersDto recipeParametersDto)
     {
@@ -52,7 +49,6 @@ public sealed class RecipesController(IMediator mediator): ControllerBase
     /// <summary>
     /// Gets a single Recipe by ID.
     /// </summary>
-    [Authorize]
     [HttpGet("{recipeId:guid}", Name = "GetRecipe")]
     public async Task<ActionResult<RecipeDto>> GetRecipe(Guid recipeId)
     {
@@ -65,7 +61,6 @@ public sealed class RecipesController(IMediator mediator): ControllerBase
     /// <summary>
     /// Creates a new Recipe record.
     /// </summary>
-    [Authorize]
     [HttpPost(Name = "AddRecipe")]
     public async Task<ActionResult<RecipeDto>> AddRecipe([FromBody]RecipeForCreationDto recipeForCreation)
     {
@@ -81,7 +76,6 @@ public sealed class RecipesController(IMediator mediator): ControllerBase
     /// <summary>
     /// Updates an entire existing Recipe.
     /// </summary>
-    [Authorize]
     [HttpPut("{recipeId:guid}", Name = "UpdateRecipe")]
     public async Task<IActionResult> UpdateRecipe(Guid recipeId, RecipeForUpdateDto recipe)
     {
@@ -94,7 +88,6 @@ public sealed class RecipesController(IMediator mediator): ControllerBase
     /// <summary>
     /// Deletes an existing Recipe record.
     /// </summary>
-    [Authorize]
     [HttpDelete("{recipeId:guid}", Name = "DeleteRecipe")]
     public async Task<ActionResult> DeleteRecipe(Guid recipeId)
     {

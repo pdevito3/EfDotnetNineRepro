@@ -1,13 +1,10 @@
 namespace RecipeManagement.Extensions.Services;
 
-using RecipeManagement.Middleware;
 using RecipeManagement.Services;
 using Resources;
 using System.Text.Json.Serialization;
 using Serilog;
 using FluentValidation.AspNetCore;
-using Hellang.Middleware.ProblemDetails;
-using Hellang.Middleware.ProblemDetails.Mvc;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Resources;
@@ -23,16 +20,12 @@ public static class WebAppServiceConfiguration
 
         builder.Services.AddSingleton(TimeProvider.System);
         builder.Services.AddSingleton(Log.Logger);
-        builder.Services.AddProblemDetails(ProblemDetailsConfigurationExtension.ConfigureProblemDetails)
-            .AddProblemDetailsConventions();
 
         // TODO update CORS for your env
-        builder.Services.AddCorsService("RecipeManagementCorsPolicy", builder.Environment);
         builder.Services.AddInfrastructure(builder.Environment, builder.Configuration);
 
         builder.Services.AddControllers()
             .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-        builder.Services.AddApiVersioningExtension();
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
