@@ -3,11 +3,7 @@ namespace RecipeManagement.IntegrationTests;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
 using static TestFixture;
-using HeimGuard;
 
 public class TestingServiceScope 
 {

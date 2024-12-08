@@ -1,12 +1,5 @@
 namespace RecipeManagement.IntegrationTests;
 
-using RecipeManagement.Resources;
-using RecipeManagement.SharedTestHelpers.Utilities;
-using Resources;
-using FluentAssertions;
-using FluentAssertions.Extensions;
-using Hangfire;
-using HeimGuard;
 using NSubstitute;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;

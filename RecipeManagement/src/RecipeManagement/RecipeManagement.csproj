@@ -13,25 +13,16 @@
     <NoWarn>1701;1702;8632;1591;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ardalis.SmartEnum" />
-    <PackageReference Include="Destructurama.Attributed" />
     <PackageReference Include="EFCore.NamingConventions" />
     <PackageReference Include="FluentValidation.AspNetCore" />
-    <PackageReference Include="Hangfire" />
-    <PackageReference Include="Hangfire.MemoryStorage" />
-    <PackageReference Include="HeimGuard" />
     <PackageReference Include="MediatR" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="QueryKit" />
-    <PackageReference Include="Riok.Mapperly" />
     <PackageReference Include="Swashbuckle.AspNetCore" />
     <PackageReference Include="Serilog.AspNetCore" />
     <PackageReference Include="Serilog.Enrichers.AspNetCore" />

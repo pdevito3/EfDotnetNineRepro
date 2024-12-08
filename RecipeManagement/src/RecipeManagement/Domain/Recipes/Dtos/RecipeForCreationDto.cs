@@ -1,6 +1,5 @@
 namespace RecipeManagement.Domain.Recipes.Dtos;
 
-using Destructurama.Attributed;
 
 public sealed record RecipeForCreationDto
 {

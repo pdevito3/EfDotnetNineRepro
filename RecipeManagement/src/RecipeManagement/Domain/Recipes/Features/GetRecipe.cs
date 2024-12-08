@@ -2,7 +2,6 @@ namespace RecipeManagement.Domain.Recipes.Features;
 
 using RecipeManagement.Domain.Recipes.Dtos;
 using RecipeManagement.Domain;
-using HeimGuard;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

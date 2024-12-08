@@ -1,4 +1,3 @@
-using Destructurama;
 using RecipeManagement;
 using Serilog;
 
@@ -6,7 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.WithProperty("ApplicationName", builder.Environment.ApplicationName)
-    .Destructure.UsingAttributes()
     .CreateLogger();
 
 builder.Host.UseSerilog();
