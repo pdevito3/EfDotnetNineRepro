@@ -3,7 +3,6 @@ namespace RecipeManagement.Domain.Recipes.Features;
 using RecipeManagement.Domain.Recipes;
 using RecipeManagement.Domain.Recipes.Dtos;
 using RecipeManagement.Domain.Recipes.Models;
-using Mappings;
 using MediatR;
 
 public static class AddRecipe
@@ -15,13 +14,20 @@ public static class AddRecipe
     {
         public async Task<RecipeDto> Handle(Command request, CancellationToken cancellationToken)
         {
-            var recipeToAdd = request.RecipeToAdd.ToRecipeForCreation();
+            var recipeToAdd = new RecipeForCreation()
+            {
+                Title = request.RecipeToAdd.Title
+            };
             var recipe = Recipe.Create(recipeToAdd);
 
             await dbContext.Recipes.AddAsync(recipe, cancellationToken);
             await dbContext.SaveChangesAsync(cancellationToken);
 
-            return recipe.ToRecipeDto();
+            return new RecipeDto()
+            {
+                Id = recipe.Id,
+                Title = recipe.Title
+            };
         }
     }
 }

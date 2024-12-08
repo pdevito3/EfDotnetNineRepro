@@ -21,13 +21,6 @@ public class Recipe : BaseEntity
         
         return newRecipe;
     }
-
-    public Recipe Update(RecipeForUpdate recipeForUpdate)
-    {
-        Title = recipeForUpdate.Title;
-
-        return this;
-    }
     
     // Add Prop Methods Marker -- Deleting this comment will cause the add props utility to be incomplete
     

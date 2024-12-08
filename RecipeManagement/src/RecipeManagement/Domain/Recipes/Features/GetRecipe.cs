@@ -3,7 +3,6 @@ namespace RecipeManagement.Domain.Recipes.Features;
 using RecipeManagement.Domain.Recipes.Dtos;
 using RecipeManagement.Domain;
 using HeimGuard;
-using Mappings;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +18,11 @@ public static class GetRecipe
             var result = await dbContext.Recipes
                 .AsNoTracking()
                 .GetById(request.RecipeId, cancellationToken);
-            return result.ToRecipeDto();
+            return new RecipeDto()
+            {
+                Id = result.Id,
+                Title = result.Title
+            };
         }
     }
 }

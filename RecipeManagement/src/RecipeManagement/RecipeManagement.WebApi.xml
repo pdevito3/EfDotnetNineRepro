@@ -26,15 +26,5 @@
             Creates a new Recipe record.
             </summary>
         </member>
-        <member name="M:RecipeManagement.Controllers.v1.RecipesController.UpdateRecipe(System.Guid,RecipeManagement.Domain.Recipes.Dtos.RecipeForUpdateDto)">
-            <summary>
-            Updates an entire existing Recipe.
-            </summary>
-        </member>
-        <member name="M:RecipeManagement.Controllers.v1.RecipesController.DeleteRecipe(System.Guid)">
-            <summary>
-            Deletes an existing Recipe record.
-            </summary>
-        </member>
     </members>
 </doc>

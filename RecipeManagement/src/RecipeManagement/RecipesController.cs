@@ -43,29 +43,5 @@ public sealed class RecipesController(IMediator mediator): ControllerBase
             commandResponse);
     }
 
-
-    /// <summary>
-    /// Updates an entire existing Recipe.
-    /// </summary>
-    [HttpPut("{recipeId:guid}", Name = "UpdateRecipe")]
-    public async Task<IActionResult> UpdateRecipe(Guid recipeId, RecipeForUpdateDto recipe)
-    {
-        var command = new UpdateRecipe.Command(recipeId, recipe);
-        await mediator.Send(command);
-        return NoContent();
-    }
-
-
-    /// <summary>
-    /// Deletes an existing Recipe record.
-    /// </summary>
-    [HttpDelete("{recipeId:guid}", Name = "DeleteRecipe")]
-    public async Task<ActionResult> DeleteRecipe(Guid recipeId)
-    {
-        var command = new DeleteRecipe.Command(recipeId);
-        await mediator.Send(command);
-        return NoContent();
-    }
-
     // endpoint marker - do not delete this comment
 }
